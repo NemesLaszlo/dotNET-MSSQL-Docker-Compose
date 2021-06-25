@@ -1,0 +1,32 @@
+version: '3'
+services:
+
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "SuperSecurePasswordBookProject123"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"
+    networks:
+      - book-app-network
+      
+  book-app:
+    build: .
+    depends_on:
+      - ms-sql-server
+    networks:
+      - book-app-network
+    environment:
+      DbServer: "ms-sql-server"
+      DbPort: "1433"
+      DbUser: "sa"
+      Password: "SuperSecurePasswordBookProject123"
+      Database: "bookDb"
+    ports: 
+      - "8090:80"
+
+# Networks to be created to facilitate communication between containers
+networks:
+  book-app-network:
