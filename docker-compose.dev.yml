@@ -5,8 +5,8 @@ services:
     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: ${SA_PASSWORD}
-      MSSQL_PID: ${MSSQL_PID}
+      SA_PASSWORD: "SuperSecurePasswordBookProject123"
+      MSSQL_PID: Express
     ports:
       - "1433:1433"
     networks:
@@ -21,8 +21,8 @@ services:
     environment:
       DbServer: "ms-sql-server"
       DbPort: "1433"
-      DbUser: ${DbUser}
-      Password: ${Password}
+      DbUser: "sa"
+      Password: "SuperSecurePasswordBookProject123"
       Database: "bookDb"
     ports: 
       - "8090:80"
